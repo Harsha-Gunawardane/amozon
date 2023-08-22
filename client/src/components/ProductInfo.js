@@ -3,6 +3,7 @@ import React from "react";
 
 import Rating from "./Rating";
 import SellerInfo from "./SellerInfo";
+import SellingInfo from "./SellingInfo";
 
 function ProductInfo() {
   const [show, setShow] = React.useState(false);
@@ -31,6 +32,7 @@ function ProductInfo() {
           lg: "row",
         }}
         w={"100%"}
+        gap={5}
       >
         <Box
           w={{
@@ -59,7 +61,47 @@ function ProductInfo() {
             <Rating rate={3.4} noOfReviews={24} />
           </Box>
         </Box>
-        <SellerInfo />
+        <Box
+          w={{
+            base: "100%",
+            lg: "40%",
+          }}
+        >
+          <SellerInfo />
+          <SellingInfo />
+        </Box>
+      </Flex>
+      <Flex gap={3} mt={8} justifyContent={"right"}>
+        <Button
+          bg={"#383838"}
+          color={"#FFFFFF"}
+          _hover={{
+            bg: "#383838",
+            color: "#FFFFFF",
+          }}
+          fontWeight="normal"
+          mr="12px"
+          h={9}
+          pl={4}
+          pr={4}
+        >
+          Add to Cart
+        </Button>
+        <Button
+          bg={"#0074D9"}
+          color={"#FFFFFF"}
+          _hover={{
+            bg: "#0074D9",
+            color: "#FFFFFF",
+          }}
+          fontWeight="normal"
+          mr="12px"
+          h={9}
+          pl={4}
+          pr={4}
+        >
+          Buy now
+        </Button>
       </Flex>
     </Box>
   );
