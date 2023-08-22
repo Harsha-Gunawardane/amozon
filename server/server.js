@@ -41,6 +41,7 @@ app.use("/", express.static(path.join(__dirname, "/public")));
 
 // routes
 app.use("/", require("./routes/root"));
+app.use("/products", require("./routes/products"))
 
 app.all("*", (req, res) => {
   res.status(404).json({ error: "404 Not Found" });

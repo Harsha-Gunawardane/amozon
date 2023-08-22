@@ -1,0 +1,7 @@
+20230822	06:50:44	6ce55421-6521-4155-a68a-b54ae2ecd632	GET	http://localhost:3000	/products
+20230822	06:51:14	d902c802-dc37-481d-80b1-271a5a4bcbeb	GET	http://localhost:3000	/products
+20230822	06:51:23	60c9c4c1-34c6-4f39-860f-4f349fed5d6f	GET	http://localhost:3000	/products
+20230822	06:51:27	3f96ad63-0a42-4ff0-9910-4cb6f2d1a544	GET	http://localhost:3000	/products
+20230822	06:51:28	81d804ce-7683-4203-800e-6f20005ff781	GET	http://localhost:3000	/products
+20230822	06:51:35	c82605c8-e13b-4893-8bed-472e8ff7cd45	GET	http://localhost:3000	/products
+20230822	06:51:40	84ef00ee-bd7c-4251-910b-ae6a8e520f97	GET	http://localhost:3000	/products
