@@ -1,9 +1,17 @@
-const products = require("../models/data")
+const data = require("../models/data");
 
 const getProducts = async (req, res) => {
-    const data = products
-    
-    res.send(products)
-}
+  res.send(data);
+};
 
-module.exports = { getProducts }
+const getProductInfo = async (req, res) => {
+  const product = data.find((x) => x.id === req.params.id);
+
+  if (product) {
+    res.send(product);
+  } else {
+    res.status(404).send({ message: "Product not found" });
+  }
+};
+
+module.exports = { getProducts, getProductInfo };

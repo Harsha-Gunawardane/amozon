@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Carousel } from "@mantine/carousel";
 import { Box, Image } from "@chakra-ui/react";
 
-function ProductCarousel() {
+function ProductCarousel({ images }) {
+  const [image, setImage] = useState(images[0]);
   return (
     <Box
       w={{
@@ -10,13 +11,7 @@ function ProductCarousel() {
         md: "40%",
       }}
     >
-      <Image
-        borderRadius={5}
-        src={
-          "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-        }
-        mb={3}
-      />
+      <Image borderRadius={5} src={image} mb={3} />
       <Carousel
         maw={320}
         mx="auto"
@@ -27,27 +22,14 @@ function ProductCarousel() {
         dragFree
         withIndicators
       >
-        <Carousel.Slide>
-          <Image
-            src={
-              "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            }
-          />
-        </Carousel.Slide>
-        <Carousel.Slide>
-          <Image
-            src={
-              "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            }
-          />
-        </Carousel.Slide>
-        <Carousel.Slide>
-          <Image
-            src={
-              "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            }
-          />
-        </Carousel.Slide>
+        {images &&
+          images.map((image, index) => {
+            return (
+              <Carousel.Slide key={index}>
+                <Image src={image} onClick={() => setImage(image)} />
+              </Carousel.Slide>
+            );
+          })}
       </Carousel>
     </Box>
   );

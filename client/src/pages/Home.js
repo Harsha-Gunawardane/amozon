@@ -1,35 +1,28 @@
-import { Box, SimpleGrid } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Box, SimpleGrid, Text } from "@chakra-ui/react";
+import React, { useEffect } from "react";
 import Product from "../components/Product";
 
-import axios from "../api/axios";
-const URL = "/products";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../store/actions/product";
 
 function Home() {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productList);
 
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get(URL, {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      });
-
-      console.log(response.data);
-      setProducts(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { loading, error, products } = productList;
+  console.log(products)
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    dispatch(listProducts());
+  }, [dispatch]);
+
+  if(loading) return <Text>loading...</Text>
+  if(error) return <Text>{error}</Text>
 
   return (
     <Box p={5}>
       <SimpleGrid minChildWidth="330px" spacing={10} justifyContent={"center"}>
-        {products.map((product) => {
+        {products && products.map((product) => {
           return <Product key={product.id} product={product} />;
         })}
       </SimpleGrid>

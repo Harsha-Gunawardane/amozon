@@ -16,7 +16,7 @@ function Product({ product }) {
     >
       <CardBody>
         <Image
-          src={product.image}
+          src={product.images[0]}
           alt="Green double couch with wooden legs"
           borderRadius="lg"
         />

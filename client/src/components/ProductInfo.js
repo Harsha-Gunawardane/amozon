@@ -1,13 +1,21 @@
 import { Box, Flex, Text, Collapse, Button } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Rating from "./Rating";
 import SellerInfo from "./SellerInfo";
 import SellingInfo from "./SellingInfo";
 
-function ProductInfo() {
-  const [show, setShow] = React.useState(false);
+function ProductInfo({ product }) {
+  const [show, setShow] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
   const handleToggle = () => setShow(!show);
+  const navigate = useNavigate();
+
+  const handleAddToCart = () => {
+    navigate(`/cart/${product.id}?quantity=${quantity}`);
+  };
 
   return (
     <Box
@@ -23,7 +31,7 @@ function ProductInfo() {
         fontStyle={"Roboto"}
         fontFamily={"sans-serif"}
       >
-        Living room Sofa
+        {product.name}
       </Text>
       <Flex
         justifyContent={"space-between"}
@@ -41,22 +49,14 @@ function ProductInfo() {
           }}
         >
           <Collapse startingHeight={50} in={show}>
-            <Text fontSize={15}>
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt sapiente
-              ea proident. Anim pariatur cliche reprehenderit, enim eiusmod high
-              life accusamus terry richardson ad squid. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt sapiente
-              ea proident.
-            </Text>
+            <Text fontSize={15}>{product.description}</Text>
           </Collapse>
           <Button size="sm" onClick={handleToggle} mt={1}>
             {show ? "- less" : "+ more"}
           </Button>
           <Box mt={1} ml={2}>
             <Text color="blue.600" fontSize="2xl">
-              $340
+              {product.price}
             </Text>
             <Rating rate={3.4} noOfReviews={24} />
           </Box>
@@ -68,7 +68,12 @@ function ProductInfo() {
           }}
         >
           <SellerInfo />
-          <SellingInfo />
+          <SellingInfo
+            stockCount={product.stockCount}
+            unitPrice={product.price}
+            quantity={quantity}
+            setQuantity={setQuantity}
+          />
         </Box>
       </Flex>
       <Flex gap={3} mt={8} justifyContent={"right"}>
@@ -84,6 +89,7 @@ function ProductInfo() {
           h={9}
           pl={4}
           pr={4}
+          onClick={handleAddToCart}
         >
           Add to Cart
         </Button>
