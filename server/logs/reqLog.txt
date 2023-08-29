@@ -1425,3 +1425,16 @@
 20230828	20:34:30	2a62eeb5-5e4b-449b-992e-98bea619881c	GET	http://localhost:3000	/products/5
 20230828	20:34:31	dd34dbd7-63b3-4699-b902-8754ed8d215d	GET	http://localhost:3000	/products/5
 20230828	20:34:36	18e5e447-eb9f-4ec0-925f-de0379af74fa	GET	http://localhost:3000	/products/5
+20230829	05:41:58	109df701-bd1f-468d-b22a-eef55ae5bbb9	GET	undefined	/users
+20230829	05:43:10	75e14114-e998-47bd-951b-7879f50f3f90	GET	undefined	/users
+20230829	05:43:37	2cc2a416-7be9-49b4-8feb-7bbdbc2b1d71	GET	undefined	/users
+20230829	05:45:18	7f56187f-9c63-40df-bb2d-f3168f39f572	GET	undefined	/users
+20230829	05:45:57	c087f8b9-6527-4732-9bf9-dc0fa25f95dd	GET	undefined	/users
+20230829	05:46:35	ffb5644a-3423-4b96-ba74-73479e0e7553	GET	undefined	/users
+20230829	09:14:55	83486851-8d69-4c29-a62f-4a084f923a73	GET	undefined	/users
+20230829	09:17:40	e803ddd2-85d2-4b7e-9850-eb8783697972	GET	undefined	/users
+20230829	10:46:32	0dfb8575-9ad2-4177-bfcb-fac1b0705d53	GET	undefined	/users
+20230829	10:47:21	2ff3cb44-f386-4577-a24d-ac44b05d363a	GET	undefined	/users
+20230829	10:48:49	473254dc-fed9-409e-a148-b0a5d16ebe0c	GET	undefined	/users
+20230829	10:49:12	f8a2ad17-b696-4b7a-bfe5-f9415adc97eb	GET	undefined	/users
+20230829	10:49:17	296d1a5b-8d04-46c3-8813-c894d2fd1958	GET	undefined	/users

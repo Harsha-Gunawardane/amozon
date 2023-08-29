@@ -4,8 +4,16 @@ const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+const connectDB = require("./config/dbConn");
+dotenv.config();
 
 const PORT = process.env.PORT || 3500;
+
+// connect mongodb database
+connectDB();
 
 // import custom middleware
 const { logger } = require("./middleware/logEvents");
@@ -41,7 +49,8 @@ app.use("/", express.static(path.join(__dirname, "/public")));
 
 // routes
 app.use("/", require("./routes/root"));
-app.use("/products", require("./routes/products"))
+app.use("/products", require("./routes/products"));
+app.use("/users", require("./routes/user"));
 
 app.all("*", (req, res) => {
   res.status(404).json({ error: "404 Not Found" });
@@ -49,6 +58,9 @@ app.all("*", (req, res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log("listening on port " + PORT);
+mongoose.connection.once("open", () => {
+  console.log("Connected to MongoDB database");
+  app.listen(PORT, () => {
+    console.log("listening on port " + PORT);
+  });
 });
