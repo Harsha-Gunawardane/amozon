@@ -11,7 +11,7 @@ function Product({ product }) {
   return (
     <Card
       maxW="sm"
-      onClick={() => navigate(`/product/${product.id}`)}
+      onClick={() => navigate(`/product/${product._id}`)}
       cursor={"pointer"}
     >
       <CardBody>
@@ -26,10 +26,10 @@ function Product({ product }) {
           </Text>
           <Text fontSize={14}>{truncate(product.description, 100)}</Text>
           <Text color="blue.600" fontSize="2xl">
-            {product.price}
+            {`$${product.price}`}
           </Text>
         </Stack>
-        <Rating rate={3.4} noOfReviews={24} />
+        <Rating rate={product.rating} noOfReviews={product.numReviews} />
       </CardBody>
     </Card>
   );

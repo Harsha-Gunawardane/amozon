@@ -11,22 +11,20 @@ import {
 import React, { useState } from "react";
 
 function SellingInfo({ stockCount, unitPrice, quantity, setQuantity }) {
-  const numericUnitPrice = parseInt(unitPrice.substring(1));
-
   const [totalPrice, setTotalPrice] = useState(unitPrice);
 
   const increaseQuantity = () => {
     if (quantity < stockCount) {
       setQuantity(quantity + 1);
 
-      setTotalPrice("$" + numericUnitPrice * (quantity + 1));
+      setTotalPrice(unitPrice * (quantity + 1));
     }
   };
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
 
-      setTotalPrice("$" + numericUnitPrice * (quantity - 1));
+      setTotalPrice(unitPrice * (quantity - 1));
     }
   };
 
@@ -59,7 +57,7 @@ function SellingInfo({ stockCount, unitPrice, quantity, setQuantity }) {
       <Flex mt={2} alignItems={"center"} justifyContent={"space-between "}>
         <Text>Price</Text>
         <Text fontSize={22} fontWeight={"semibold"} color={"#333333"}>
-          {totalPrice}
+          {`$${totalPrice}`}
         </Text>
       </Flex>
     </Box>

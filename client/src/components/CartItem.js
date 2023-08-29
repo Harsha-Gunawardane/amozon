@@ -23,8 +23,6 @@ function CartItem({ item, setUpdatedId }) {
   const dispatch = useDispatch();
   const containerRef = useRef(null);
 
-  const unitPrice = parseInt(item.unitPrice.substring(1));
-
   const [truncateValue, setTruncateValue] = useState(180);
   const [quantity, setQuantity] = useState(parseInt(item.quantity));
 
@@ -128,7 +126,7 @@ function CartItem({ item, setUpdatedId }) {
               </NumberInputStepper>
             </NumberInput>
             <Text fontSize={18} fontWeight={"semibold"} color={"#333333"}>
-              {`$${unitPrice * quantity}`}
+              {`$${item.unitPrice * quantity}`}
             </Text>
           </Flex>
         </Box>

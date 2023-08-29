@@ -1,11 +1,12 @@
 import React from "react";
-import { Flex, Text, Image } from "@chakra-ui/react";
+import { Flex, Text, Image, Button } from "@chakra-ui/react";
 import { FiShoppingCart } from "react-icons/fi";
 import { Indicator } from "@mantine/core";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import Profile from "../assests/images/profile.jpg";
+import { logout } from "../store/actions/user";
 
 function Header() {
   const cart = useSelector((state) => state.cart);
@@ -13,6 +14,22 @@ function Header() {
   const cartValue = cartItems.length;
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user);
+  const { userInfo } = user;
+
+  const signOutHandler = () => {
+    dispatch(logout());
+  };
+
+  const headerBtnHandler = () => {
+    if (userInfo) {
+      signOutHandler();
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <Flex
@@ -23,10 +40,35 @@ function Header() {
       pl={5}
       pr={5}
     >
-      <Text fontSize={24} fontWeight={"bold"} color={"#FEFEFE"}>
+      <Text
+        fontSize={24}
+        fontWeight={"bold"}
+        color={"#FEFEFE"}
+        cursor={"pointer"}
+        onClick={() => navigate("/home")}
+      >
         Amozon
       </Text>
       <Flex gap={5} alignItems={"center"}>
+        <Button
+          bg={"#ffd814"}
+          borderRadius={5}
+          p={0}
+          h={"max-content"}
+          onClick={headerBtnHandler}
+        >
+          <Text
+            pl={5}
+            pr={5}
+            pt={2}
+            pb={2.5}
+            fontWeight={"semibold"}
+            color={"#333333"}
+          >
+            {userInfo ? "Sign out" : "Sign in"}
+          </Text>
+        </Button>
+
         <Indicator
           inline
           label={cartValue}

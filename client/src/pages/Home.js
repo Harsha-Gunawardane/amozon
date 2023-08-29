@@ -23,7 +23,7 @@ function Home() {
     <Box p={5}>
       <SimpleGrid minChildWidth="330px" spacing={10} justifyContent={"center"}>
         {products && products.map((product) => {
-          return <Product key={product.id} product={product} />;
+          return <Product key={product._id} product={product} />;
         })}
       </SimpleGrid>
     </Box>

@@ -1,7 +1,6 @@
 import {
   CART_ADD_ITEM,
   CART_DELETE_ITEM,
-  CART_UPDATE_ITEM,
 } from "../constants/product";
 
 export const cartReducer = (state = { cartItems: [] }, action) => {

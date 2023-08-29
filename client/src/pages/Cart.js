@@ -9,7 +9,7 @@ import CartItem from "../components/CartItem";
 function Cart() {
   const { id } = useParams();
   const [cartItems, setCartItems] = useState(
-    JSON.parse(localStorage.getItem("cartItems") || [])
+    JSON.parse(localStorage.getItem("cartItems")) || []
   );
   const [updatedId, setUpdatedId] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
@@ -23,8 +23,12 @@ function Cart() {
   useEffect(() => {
     const updateCart = async () => {
       if (id) {
-        await dispatch(addToCart(id, quantity));
-        setCartItems(JSON.parse(localStorage.getItem("cartItems")));
+        try {
+          await dispatch(addToCart(id, quantity));
+          setCartItems(JSON.parse(localStorage.getItem("cartItems")));
+        } catch (error) {
+          console.error("Error updating cart:", error);
+        }
       }
     };
     updateCart();
@@ -35,27 +39,27 @@ function Cart() {
     setUpdatedId("");
   }, [updatedId]);
 
-  const getNumericPrice = (price) => {
-    return parseInt(price.substring(1));
-  };
-
   useEffect(() => {
     const countTotalPrice = (items) => {
       let price = 0;
       let tItems = 0;
 
-      items.forEach((item) => {
-        price += getNumericPrice(item.unitPrice) * parseInt(item.quantity);
-        tItems += parseInt(item.quantity);
-      });
+      if (items) {
+        items.forEach((item) => {
+          price += item.unitPrice * parseInt(item.quantity, 10);
+          tItems += parseInt(item.quantity, 10);
+        });
+      }
 
-      setTotalPrice(price);
-      setTotalItems(tItems);
+      return { price, tItems };
     };
 
-    countTotalPrice(cartItems);
-  }, [totalPrice, totalItems, id, quantity, updatedId, dispatch, cartItems]);
+    const { price, tItems } = countTotalPrice(cartItems);
+    setTotalPrice(price);
+    setTotalItems(tItems);
+  }, [cartItems]);
 
+  console.log(cartItems);
   return (
     <Flex
       justifyContent={"space-around"}
@@ -83,7 +87,7 @@ function Cart() {
           Shopping Cart
         </Text>
         <Box>
-          {cartItems.length ? (
+          {cartItems && cartItems.length ? (
             cartItems.map((item, index) => {
               return (
                 <CartItem item={item} setUpdatedId={setUpdatedId} key={index} />

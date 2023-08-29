@@ -14,7 +14,7 @@ function ProductInfo({ product }) {
   const navigate = useNavigate();
 
   const handleAddToCart = () => {
-    navigate(`/cart/${product.id}?quantity=${quantity}`);
+    navigate(`/cart/${product._id}?quantity=${quantity}`);
   };
 
   return (
@@ -56,9 +56,9 @@ function ProductInfo({ product }) {
           </Button>
           <Box mt={1} ml={2}>
             <Text color="blue.600" fontSize="2xl">
-              {product.price}
+              {`$${product.price}`}
             </Text>
-            <Rating rate={3.4} noOfReviews={24} />
+            <Rating rate={product.rating} noOfReviews={product.numReviews} />
           </Box>
         </Box>
         <Box
