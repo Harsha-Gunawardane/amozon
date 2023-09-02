@@ -62,10 +62,12 @@ function Login() {
             mt={2}
             mb={2}
             display={error ? "flex" : "none"}
-            bg={'#F5D6D3'}
-            borderRadius={5} 
+            bg={"#F5D6D3"}
+            borderRadius={5}
           >
-            <Text pt={1.5} pb={1.5} fontSize={14} color={'#D93400'}>{error}</Text>
+            <Text pt={1.5} pb={1.5} fontSize={14} color={"#D93400"}>
+              {error}
+            </Text>
           </Flex>
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl mt={3} isInvalid={errors.email}>
@@ -122,7 +124,11 @@ function Login() {
               </Button>
               <Flex mt={3} mb={3} alignItems={"center"} gap={2}>
                 <Text fontSize={14}>Haven't account yet ? </Text>
-                <Text cursor={"pointer"} textDecoration={"underline"}>
+                <Text
+                  cursor={"pointer"}
+                  textDecoration={"underline"}
+                  onClick={() => navigate("/register")}
+                >
                   Sign up
                 </Text>
               </Flex>

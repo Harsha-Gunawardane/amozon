@@ -9,5 +9,6 @@ router.get("^/$|/index(.html)?", (req, res) => {
 });
 
 router.post("/auth", authController.auth);
+router.post("/register", authController.register)
 
 module.exports = router;
